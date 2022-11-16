@@ -9,10 +9,16 @@ import router from './router'
 import axios from "axios"
 import VueAxios from 'vue-axios'
 
+import "./assets/index.css"
+
 
 const app = createApp(App)
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
     app.component(key, component)
 }
 
-app.use(ElementPlus).use(VueAxios, axios).use(router).provide('axios', app.config.globalProperties.axios).mount('#app')
+app.use(ElementPlus)
+    .use(VueAxios, axios)
+    .use(router)
+    .provide('axios', app.config.globalProperties.axios)
+    .mount('#app')
