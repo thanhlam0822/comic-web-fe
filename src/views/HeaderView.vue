@@ -11,12 +11,10 @@
                   size="large"
                   placeholder="Please Input"
                   :suffix-icon="Search"
-
-
               />
             </div>
           </el-col>
-          <el-col :span="16" class="function">
+          <el-col span="" class="function">
             <button @click="darkMode" class="turn-dark"><i class="bi bi-lightbulb light"></i></button>
             <i class="bi bi-bell-fill alert"></i>
             <a class="login-link link-authentication" href="">Login</a>
@@ -55,13 +53,12 @@
 </template>
 <script lang="ts" setup>
 import {ref} from 'vue'
-import { Calendar, Search } from '@element-plus/icons-vue'
+import {Search} from '@element-plus/icons-vue'
 
 let input = ref('')
 
-
 function darkMode() {
-  let htmlDarkMode = document.querySelector("html")
+  let htmlDarkMode = document.querySelector("html") as HTMLHtmlElement
   if (htmlDarkMode.style.background === 'white') {
     htmlDarkMode.style.background = '#333'
   } else {
