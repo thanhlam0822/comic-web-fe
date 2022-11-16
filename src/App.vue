@@ -1,13 +1,11 @@
 <template>
   <HeaderView />
+  <CarouselView />
 </template>
 
-<script>
+<script setup>
 import HeaderView from './views/HeaderView'
-  export default {
-    components: {HeaderView},
-
-  }
+import CarouselView from './views/CarouselView'
 </script>
 <style>
 
