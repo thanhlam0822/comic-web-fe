@@ -1,3 +1,11 @@
+@font-face {
+    font-family: myFirstFont;
+    src: url('../img/font/Poppins-SemiBold.ttf');
+}
+html {
+    font-family: myFirstFont;
+}
 body {
     margin: 0;
+    background-color: #E6E6FA
 }
