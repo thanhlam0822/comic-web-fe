@@ -61,7 +61,7 @@ let input = ref('')
 
 
 function darkMode() {
-  let htmlDarkMode = document.querySelector("html") as HTMLHtmlElement;
+  let htmlDarkMode = document.querySelector("html")
   if (htmlDarkMode.style.background === 'white') {
     htmlDarkMode.style.background = '#333'
   } else {
