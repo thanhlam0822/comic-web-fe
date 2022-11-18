@@ -1,25 +1,44 @@
 <template xmlns:el-col="http://www.w3.org/1999/html">
   <div id="header">
     <el-container>
+
       <el-header>
+        <img class="logo-web" :fit="fill" src="../img/img.png">
+
+        <el-menu
+            :default-active="activeIndex"
+            class="el-menu-demo"
+            mode="horizontal"
+            @select="handleSelect"
+        >
+
+
+          <el-menu-item class="menu-time " index="2"><p class="menu-item-custom">Trending</p></el-menu-item>
+          <el-menu-item class="menu-time " index="3"><p class="menu-item-custom">Followed</p></el-menu-item>
+          <el-menu-item class="menu-time " index="4"><p class="menu-item-custom">History</p></el-menu-item>
+          <el-menu-item class="menu-time " index="5"><p class="menu-item-custom">Category</p></el-menu-item>
+          <el-menu-item class="menu-time " index="6"><p class="menu-item-custom">Chart</p></el-menu-item>
+
+        </el-menu>
+
         <el-row justify="center">
+
           <el-col :span="8" class="search-bar">
             <div>
+
               <el-input
                   v-model="input"
                   class="w-50 m-2 "
                   size="large"
                   placeholder="Please Input"
                   :suffix-icon="Search"
-
-
               />
             </div>
           </el-col>
-          <el-col :span="16" class="function">
+          <el-col span="" class="function">
             <button @click="darkMode" class="turn-dark"><i class="bi bi-lightbulb light"></i></button>
             <i class="bi bi-bell-fill alert"></i>
-            <a class="login-link link-authentication" href="">Login</a>
+            <a  class="login-link link-authentication" href="">Login</a>
             <a class="sign-in-link link-authentication" href=""> Sign-in</a>
 
           </el-col>
@@ -28,106 +47,78 @@
       </el-header>
     </el-container>
   </div>
-  <el-menu
-      :default-active="activeIndex"
-      class="el-menu-demo"
-      mode="horizontal"
-      background-color="#545c64"
-      text-color="#fff"
-      @select="handleSelect"
-  >
-    <el-menu-item class="menu-time" index="1">
-      <div class="main-page">
-        <el-icon>
-          <HomeFilled/>
-        </el-icon>
-      </div>
-    </el-menu-item>
-    <el-menu-item class="menu-time" index="2">Trending</el-menu-item>
-    <el-menu-item class="menu-time" index="3">Followed</el-menu-item>
-    <el-menu-item class="menu-time" index="4">Read History</el-menu-item>
-    <el-menu-item class="menu-time" index="5">Category</el-menu-item>
-    <el-menu-item class="menu-time" index="6">Chart</el-menu-item>
-  </el-menu>
-  <body>
-  <div class="dark-mode"></div>
-  </body>
+
+
 </template>
 <script lang="ts" setup>
 import {ref} from 'vue'
-import { Calendar, Search } from '@element-plus/icons-vue'
-
+import {Search} from '@element-plus/icons-vue'
 let input = ref('')
-
-
 function darkMode() {
-  let htmlDarkMode = document.querySelector("html")
+  let htmlDarkMode = document.querySelector("html") as HTMLHtmlElement
+
   if (htmlDarkMode.style.background === 'white') {
     htmlDarkMode.style.background = '#333'
   } else {
     htmlDarkMode.style.background = 'white'
   }
 }
-
 const activeIndex = ref('1')
-
 const handleSelect = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
 }
-
 </script>
 <style scoped>
-#header {
-  background-color: rebeccapurple;
+header.el-header {
+  display: flex;
+  justify-content: space-between;
 }
-
+#header {
+  background-color: white;
+}
 .light {
-  color: #ffffff;
+  color: #333333;
   padding: 4px 10px;
   font-size: 15px;
 }
-
 .alert {
-  color: #ffffff;
+  color: #333333;
 }
-
 .alert:hover {
-  color: black;
+  font-size:20px
 }
-
 .light:hover {
-  color: black;
+  color: yellow;
+  font-size:20px
 }
-
 .link-authentication {
   text-decoration: none;
-  color: #fff;
+  color: #333333;
   margin-left: 30px;
   font-size: 20px;
 }
-
 .link-authentication:hover {
   text-decoration: underline;
 }
-
 .function {
+  display: flex;
   margin: 20px 30px;
+  margin-top: 15px;
 }
-
 .search-bar {
   margin: 10px;
 }
-
 .light {
   padding: 0px 25px;
 }
-
 .turn-dark {
-  background-color: rebeccapurple;
+  background-color: white;
   border: 0px;
 }
-
 .menu-time {
   font-size: 17px;
+}
+.menu-item-custom {
+  font-size: 20px;
 }
 </style>
