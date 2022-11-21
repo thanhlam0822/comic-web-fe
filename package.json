@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.0.10",
+    "@hennge/vue3-pagination": "^1.0.17",
     "axios": "^1.1.3",
     "bootstrap-icons": "^1.10.2",
     "core-js": "^3.8.3",

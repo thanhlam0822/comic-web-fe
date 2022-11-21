@@ -3,7 +3,7 @@
     <el-container>
 
       <el-header>
-        <img class="logo-web" :fit="fill" src="../img/img.png">
+        <img class="logo-web"  src="../img/img.png">
 
         <el-menu
             :default-active="activeIndex"
@@ -36,7 +36,7 @@
             </div>
           </el-col>
           <el-col span="" class="function">
-            <button @click="darkMode" class="turn-dark"><i class="bi bi-lightbulb light"></i></button>
+            <button @click="darkMode()" class="turn-dark"><i class="bi bi-lightbulb light"></i></button>
             <i class="bi bi-bell-fill alert"></i>
             <a  class="login-link link-authentication" href="">Login</a>
             <a class="sign-in-link link-authentication" href=""> Sign-in</a>
