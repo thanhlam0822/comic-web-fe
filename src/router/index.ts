@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 
 
+const CustomerLayout = () => import('../layout/CustomerLayout.vue')
+
 const routes: Array<RouteRecordRaw> = [
 
   // {
@@ -11,6 +13,18 @@ const routes: Array<RouteRecordRaw> = [
   //   // which is lazy-loaded when the route is visited.
   //   component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
   // }
+
+  {
+    path: '/',
+    redirect: "/customer"
+
+  },
+
+  {
+    path: "/customer",
+    component: CustomerLayout,
+  }
+
 ]
 
 const router = createRouter({

@@ -4,10 +4,12 @@
   <div class="comic-should-read">
     <Carousel :wrap-around="true">
       <Slide v-for="slide in comicsShouldRead" :key="slide">
-        <div class="carousel__item"><el-image style="width:1024px;height: 500px" :src="slide" :fit="'contain'" /></div>
+        <div class="carousel__item">
+          <el-image style="width:1024px;height: 500px" :src="slide" :fit="'contain'"/>
+        </div>
       </Slide>
       <template #addons>
-        <Navigation />
+        <Navigation/>
 
       </template>
     </Carousel>
@@ -24,6 +26,7 @@
 import {Carousel, Navigation, Slide} from 'vue3-carousel'
 import 'vue3-carousel/dist/carousel.css'
 import {defineComponent} from 'vue'
+
 let comicsShouldRead = [
   'https://f8-zpcloud.zdn.vn/3708219501215563035/12a56695b0d7698930c6.jpg',
   'https://f7-zpcloud.zdn.vn/6963972692246792437/4d98ff452609ff57a618.jpg',

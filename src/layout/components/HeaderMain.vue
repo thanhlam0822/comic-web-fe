@@ -3,13 +3,14 @@
     <el-container>
 
       <el-header>
-        <img class="logo-web"  src="../img/img.png">
+        <img class="logo-web"  src="../../img/img.png">
 
         <el-menu
             :default-active="activeIndex"
             class="el-menu-demo"
             mode="horizontal"
             @select="handleSelect"
+
         >
 
 
@@ -26,14 +27,10 @@
           <el-col :span="8" class="search-bar">
             <div>
 
-              <el-input
-                  v-model="input"
-                  class="w-50 m-2 "
-                  size="large"
-                  placeholder="Please Input"
-                  :suffix-icon="Search"
-              />
+              <slot/>
+              <button @click="$emit('search-comic')">Search</button>
             </div>
+
           </el-col>
           <el-col span="" class="function">
             <button @click="darkMode()" class="turn-dark"><i class="bi bi-lightbulb light"></i></button>
@@ -51,9 +48,12 @@
 
 </template>
 <script lang="ts" setup>
-import {ref} from 'vue'
+import {ref,defineProps,defineEmits} from 'vue'
 import {Search} from '@element-plus/icons-vue'
-let input = ref('')
+import axios from "axios";
+defineEmits(['search-comic'])
+
+
 function darkMode() {
   let htmlDarkMode = document.querySelector("html") as HTMLHtmlElement
 
@@ -67,6 +67,7 @@ const activeIndex = ref('1')
 const handleSelect = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
 }
+
 </script>
 <style scoped>
 header.el-header {
