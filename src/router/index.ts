@@ -2,19 +2,10 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 
 
 const CustomerLayout = () => import('../layout/CustomerLayout.vue')
-
+const AdminPage = () => import  ('@/components/AdminPage.vue')
+const UserControl = () => import  ('@/components/layout/UserControl.vue')
 const routes: Array<RouteRecordRaw> = [
-
-  // {
-  //   path: '/about',
-  //   name: 'about',
-  //   // route level code-splitting
-  //   // this generates a separate chunk (about.[hash].js) for this route
-  //   // which is lazy-loaded when the route is visited.
-  //   component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
-  // }
-
-  {
+    {
     path: '/',
     redirect: "/customer"
 
@@ -23,7 +14,13 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/customer",
     component: CustomerLayout,
+  },
+  {
+    path: "/admin",
+    component:AdminPage,
+    children:[{path:'/user-control',component:UserControl}]
   }
+
 
 ]
 

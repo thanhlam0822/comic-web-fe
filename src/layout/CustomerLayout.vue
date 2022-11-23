@@ -16,12 +16,18 @@
   <carousel-comic> </carousel-comic>
 
   <main-comic  :comics="comics">
+    <template #ranking>
+      <ranking-comic> </ranking-comic>
+    </template>
     <el-pagination
         background layout="prev, pager, next"
         :total="90"
 
         @current-change="handleCurrentChange"/>
   </main-comic>
+  <div>
+
+  </div>
 </template>
 
 <script lang="ts" setup>
@@ -30,6 +36,7 @@ import HeaderMain from './components/HeaderMain.vue'
 import MainComic from './components/MainComic.vue'
 import SearchItem from './components/SearchComic.vue'
 import MenuMain from './components/MenuMain.vue'
+import RankingComic from './components/RankingComic.vue'
 import { Search } from '@element-plus/icons-vue'
 
 import {ref} from "vue";
