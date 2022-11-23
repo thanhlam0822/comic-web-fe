@@ -101,7 +101,7 @@ a.button-read-more:hover {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-  margin-left: 105px;
+
 }
 
 .pagination {

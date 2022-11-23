@@ -1,12 +1,17 @@
 <template>
-  <header-main @search-comic="searchComic"> <el-input
-      v-model="input1"
-      class="w-50 m-2"
-      size="large"
-      placeholder="Please Input"
-      @keyup.enter="searchComic"
-      :suffix-icon="Search"
-  /></header-main>
+  <header-main @search-comic="searchComic" @turn-dark="darkMode()">
+
+  </header-main>
+  <search-item>
+    <el-input
+        v-model="input1"
+        class="w-50 m-2"
+        size="large"
+        placeholder="Please Input"
+        @keyup.enter="searchComic"
+        :suffix-icon="Search"
+    />
+  </search-item>
   <menu-main> </menu-main>
   <carousel-comic> </carousel-comic>
 
@@ -23,8 +28,10 @@
 import CarouselComic from './components/CarouselComic.vue'
 import HeaderMain from './components/HeaderMain.vue'
 import MainComic from './components/MainComic.vue'
+import SearchItem from './components/SearchComic.vue'
 import MenuMain from './components/MenuMain.vue'
 import { Search } from '@element-plus/icons-vue'
+
 import {ref} from "vue";
 import axios from "axios";
 let input1 = ref('')
@@ -45,6 +52,15 @@ function searchComic() {
       .then((respone) => {
         comics.value = respone.data
       })
+}
+function darkMode() {
+  let htmlDarkMode = document.querySelector("html") as HTMLHtmlElement
+
+  if (htmlDarkMode.style.background === '#FCFBFF') {
+    htmlDarkMode.style.background = '#333'
+  } else {
+    htmlDarkMode.style.background = '#FCFBFF'
+  }
 }
 
 </script>
