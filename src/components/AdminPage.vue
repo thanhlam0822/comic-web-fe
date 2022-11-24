@@ -11,8 +11,8 @@
             @open="handleOpen"
             @close="handleClose"
         >
-          <el-menu-item index="1"><el-icon><List /></el-icon>Dashboard</el-menu-item>
-          <el-menu-item index="2"><el-icon><UserFilled /></el-icon><router-link to="/user-control">User</router-link></el-menu-item>
+          <router-link to="/dashboard"><el-menu-item index="1"><el-icon><List /></el-icon>Dashboard</el-menu-item> </router-link>
+          <router-link to="/user-control">  <el-menu-item index="2"><el-icon><UserFilled /></el-icon>User</el-menu-item></router-link>
           <el-menu-item index="3"><el-icon><Checked /></el-icon>Category</el-menu-item>
           <el-menu-item index="4"><el-icon><Reading /></el-icon>Comic</el-menu-item>
         </el-menu>
@@ -35,6 +35,7 @@
         </el-col>
 
       </el-header>
+
       <el-main><router-view/></el-main>
 
     </el-container>
@@ -48,7 +49,7 @@ import MenuAdmin from './layout/MenuAdmin.vue'
 import UserControl from './layout/MenuAdmin.vue'
 import { Search } from '@element-plus/icons-vue'
 const input = ref('')
-const tab = UserControl
+
 </script>
 
 <style scoped>
