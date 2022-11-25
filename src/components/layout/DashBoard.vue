@@ -62,7 +62,7 @@
           </div>
           <div class="user-info">
             <div>{{user.name}}</div>
-            <div>{{user.gmail}}</div>
+            <div>{{user.gmail}} </div>
           </div>
         </div>
       </el-col>
@@ -74,8 +74,8 @@
       </el-col>
       <el-col :span="4"><div class="grid-content " />
         <div class="user-status">
-          <div v-if="status">
-            <el-button   type="success" >Active</el-button>
+          <div v-if="user.status == 'ACTIVE'">
+            <el-button type="success" >Active</el-button>
           </div>
           <div v-else>
             <el-button type="danger" >Deleted</el-button>
@@ -85,19 +85,12 @@
       <el-col :span="4"><div class="grid-content " /><div class="user-role">{{user.role}}</div></el-col>
       <el-col :span="4"><div class="grid-content " />
         <div class="user-active">
-          <el-button type="primary">Edit</el-button>
-          <el-button type="danger">Delete</el-button>
+          <router-link :to="'/edit-user/' + user.id"> <el-button type="primary">Edit</el-button> </router-link>
+          <el-button @click="deleteUser(user.id)" type="danger">Delete</el-button>
         </div>
       </el-col>
 
     </el-row>
-
-
-
-
-
-
-
   </div>
 </template>
 
@@ -111,7 +104,10 @@ axios.get("http://localhost:8090/api/user/list")
     .then((response) => {
       userList.value = response.data
     })
+function deleteUser(id:number) {
+  axios.patch("http://localhost:8090/api/user/" + id)
 
+}
 </script>
 
 <style scoped>

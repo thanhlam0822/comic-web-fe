@@ -5,6 +5,7 @@ const CustomerLayout = () => import('../layout/CustomerLayout.vue')
 const AdminPage = () => import  ('@/components/AdminPage.vue')
 const UserControl = () => import  ('@/components/layout/UserControl.vue')
 const DashBoard = () => import  ('@/components/layout/DashBoard.vue')
+const EditUser = () => import ('@/components/layout/EditUser.vue')
 const routes: Array<RouteRecordRaw> = [
     {
         path: '/',
@@ -19,8 +20,11 @@ const routes: Array<RouteRecordRaw> = [
     {
         path: "/admin",
         component: AdminPage,
-        children: [{path: '/user-control', component: UserControl},
-            {path: '/dashboard', component: DashBoard}
+        children: [
+            {path: '/user-control', component: UserControl},
+            {path: '/dashboard', component: DashBoard},
+            {path:'/edit-user/:id',component:EditUser}
+
         ],
         redirect: '/dashboard'
 
