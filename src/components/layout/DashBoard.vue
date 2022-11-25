@@ -42,9 +42,11 @@
       <el-col :span="4"><div class="grid-content " />User Detail</el-col>
       <el-col :span="4"><div class="grid-content " />Status</el-col>
       <el-col :span="4"><div class="grid-content " />Role</el-col>
-      <el-col :span="4"><div class="grid-content " />Action</el-col>
+      <el-col :span="4"><div class="grid-content " /></el-col>
     </el-row>
-    <el-row  justify="space-around" class="row">
+
+
+    <el-row  justify="space-around" class="row" v-for="user in userList" :key="user" >
       <el-col :span="6"><div class="grid-content " />
         <div class="name">
           <div class="user-data">
@@ -59,16 +61,38 @@
             </el-row>
           </div>
           <div class="user-info">
-            <div>Chu Thanh Lam</div>
-            <div>lam.ct198310@sis.hust.edu.vn</div>
+            <div>{{user.name}}</div>
+            <div>{{user.gmail}}</div>
           </div>
         </div>
       </el-col>
-      <el-col :span="4"><div class="grid-content " />User Detail</el-col>
-      <el-col :span="4"><div class="grid-content " />Status</el-col>
-      <el-col :span="4"><div class="grid-content " />Role</el-col>
-      <el-col :span="4"><div class="grid-content " />Action</el-col>
+      <el-col :span="4"><div class="grid-content " />
+        <div class="user-detail">
+          <div>{{user.job}}</div>
+          <div>{{user.position}}</div>
+        </div>
+      </el-col>
+      <el-col :span="4"><div class="grid-content " />
+        <div class="user-status">
+          <div v-if="status">
+            <el-button   type="success" >Active</el-button>
+          </div>
+          <div v-else>
+            <el-button type="danger" >Deleted</el-button>
+          </div>
+        </div>
+      </el-col>
+      <el-col :span="4"><div class="grid-content " /><div class="user-role">{{user.role}}</div></el-col>
+      <el-col :span="4"><div class="grid-content " />
+        <div class="user-active">
+          <el-button type="primary">Edit</el-button>
+          <el-button type="danger">Delete</el-button>
+        </div>
+      </el-col>
+
     </el-row>
+
+
 
 
 
@@ -78,16 +102,22 @@
 </template>
 
 <script lang="ts" setup>
+import {ref} from 'vue'
+import axios from "axios";
+const status = true;
 const imgUrl = 'https://f5-zpcloud.zdn.vn/7702170006391086294/594ab303a5697c372578.jpg'
-const fakeData = [
-
-]
+const userList = ref([])
+axios.get("http://localhost:8090/api/user/list")
+    .then((response) => {
+      userList.value = response.data
+    })
 
 </script>
 
 <style scoped>
 .title {
   font-size: 20px;
+
 }
 .web-information {
   border: 1px solid white;
@@ -159,5 +189,8 @@ const fakeData = [
   border-radius: 10px;
   height: 40px;
   align-items: center;
+}
+.name {
+  display: flex;
 }
 </style>
