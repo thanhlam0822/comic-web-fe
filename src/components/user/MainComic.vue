@@ -40,10 +40,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-import axios from "axios";
-import {reactive, ref,defineProps} from "vue";
-import {defineComponent} from 'vue'
-import {Carousel, Navigation, Slide} from 'vue3-carousel'
+import {defineProps} from "vue";
 import 'vue3-carousel/dist/carousel.css'
 defineProps(['comics'])
 

@@ -1,11 +1,11 @@
 import {createRouter, createWebHistory, RouteRecordRaw} from 'vue-router'
 
 
-const CustomerLayout = () => import('../layout/CustomerLayout.vue')
-const AdminPage = () => import  ('@/components/AdminPage.vue')
-const UserControl = () => import  ('@/components/layout/UserControl.vue')
-const DashBoard = () => import  ('@/components/layout/DashBoard.vue')
-const EditUser = () => import ('@/components/layout/EditUser.vue')
+const CustomerLayout = () => import('../layout/UserLayout.vue')
+const AdminPage = () => import  ('@/layout/AdminLayout.vue')
+const UserControl = () => import  ('@/components/admin/ControlUser.vue')
+const DashBoard = () => import  ('@/components/admin/MainPage.vue')
+const EditUser = () => import ('@/components/admin/EditUser.vue')
 const routes: Array<RouteRecordRaw> = [
     {
         path: '/',
@@ -21,12 +21,12 @@ const routes: Array<RouteRecordRaw> = [
         path: "/admin",
         component: AdminPage,
         children: [
-            {path: '/user-control', component: UserControl},
-            {path: '/dashboard', component: DashBoard},
-            {path:'/edit-user/:id',component:EditUser}
+            {path: 'user-control', component: UserControl},
+            {path: 'dashboard', component: DashBoard},
+            {path:'edit-user/:id',component:EditUser}
 
         ],
-        redirect: '/dashboard'
+        redirect: '/admin/dashboard'
 
     }
 

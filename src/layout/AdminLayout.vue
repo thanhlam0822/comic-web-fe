@@ -11,8 +11,8 @@
             @open="handleOpen"
             @close="handleClose"
         >
-          <router-link to="/dashboard"><el-menu-item index="1"><el-icon><List /></el-icon>Dashboard</el-menu-item> </router-link>
-          <router-link to="/user-control">  <el-menu-item index="2"><el-icon><UserFilled /></el-icon>User</el-menu-item></router-link>
+          <router-link to="dashboard"><el-menu-item index="1"><el-icon><List /></el-icon>Dashboard</el-menu-item> </router-link>
+          <router-link to="user-control">  <el-menu-item index="2"><el-icon><UserFilled /></el-icon>User</el-menu-item></router-link>
           <el-menu-item index="3"><el-icon><Checked /></el-icon>Category</el-menu-item>
           <el-menu-item index="4"><el-icon><Reading /></el-icon>Comic</el-menu-item>
         </el-menu>
@@ -44,10 +44,9 @@
 </template>
 
 <script lang="ts" setup>
-import {ref} from 'vue'
-import MenuAdmin from './layout/MenuAdmin.vue'
-import UserControl from './layout/MenuAdmin.vue'
 import { Search } from '@element-plus/icons-vue'
+import MenuAdmin from '../components/admin/AdminMenu.vue'
+import { ref } from 'vue'
 const input = ref('')
 
 </script>
