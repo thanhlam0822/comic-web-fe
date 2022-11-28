@@ -8,7 +8,7 @@
         @click="change(item.value)"
     />
   </el-select>
-
+   <br>
 
     <el-container v-for="comic in comics" :key="comic">
       <el-aside width="200px">

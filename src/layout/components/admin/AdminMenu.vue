@@ -4,7 +4,7 @@
     <div class=" menu-admin">
 
         <div class="logo-image">
-          <img class="logo-web"  src="../../img/img-modified.png">
+          <img class="logo-web"  src="../../../img/img-modified.png">
         </div>
         <slot></slot>
     </div>

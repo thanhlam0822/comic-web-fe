@@ -45,7 +45,7 @@
 
 <script lang="ts" setup>
 import { Search } from '@element-plus/icons-vue'
-import MenuAdmin from '../components/admin/AdminMenu.vue'
+import MenuAdmin from './components/admin/AdminMenu.vue'
 import { ref } from 'vue'
 const input = ref('')
 

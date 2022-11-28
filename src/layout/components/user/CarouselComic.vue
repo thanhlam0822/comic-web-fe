@@ -25,7 +25,7 @@
 
 import {Carousel, Navigation, Slide} from 'vue3-carousel'
 import 'vue3-carousel/dist/carousel.css'
-import {defineComponent} from 'vue'
+
 
 let comicsShouldRead = [
   'https://f8-zpcloud.zdn.vn/3708219501215563035/12a56695b0d7698930c6.jpg',

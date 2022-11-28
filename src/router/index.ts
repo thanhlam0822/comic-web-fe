@@ -3,9 +3,9 @@ import {createRouter, createWebHistory, RouteRecordRaw} from 'vue-router'
 
 const CustomerLayout = () => import('../layout/UserLayout.vue')
 const AdminPage = () => import  ('@/layout/AdminLayout.vue')
-const UserControl = () => import  ('@/components/admin/ControlUser.vue')
-const DashBoard = () => import  ('@/components/admin/MainPage.vue')
-const EditUser = () => import ('@/components/admin/EditUser.vue')
+const UserControl = () => import  ('@/layout/components/admin/ControlUser.vue')
+const DashBoard = () => import  ('@/layout/components/admin/MainPage.vue')
+const EditUser = () => import ('@/layout/components/admin/EditUser.vue')
 const routes: Array<RouteRecordRaw> = [
     {
         path: '/',

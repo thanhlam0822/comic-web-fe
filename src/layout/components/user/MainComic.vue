@@ -1,4 +1,17 @@
 <template>
+  <div class="search-bar">
+    <div class="search-menu">
+
+      <el-input
+          v-model="query"
+          class="w-50 m-2"
+          size="large"
+          placeholder="Please Input"
+          @keyup.enter="searchComic"
+
+      />
+    </div>
+  </div>
   <body>
   <el-container>
     <el-main >
@@ -36,14 +49,58 @@
 
   </body>
   <div class="pagination">
-     <slot/>
+    <el-pagination
+        :page-sizes="[5,10,15]"
+        background
+        layout="sizes,prev, pager, next"
+        :total="1000"
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
+        @click="changePageAndSize"
+    />
+
+
   </div>
 </template>
 <script lang="ts" setup>
-import {defineProps} from "vue";
-import 'vue3-carousel/dist/carousel.css'
-defineProps(['comics'])
+import { ref,reactive} from "vue";
+import Comic from "@/api/Comic.js";
+let pageConfig={
+  pageNumber: 0 ,
+  pageSize:8
+}
+let comics = ref([])
+let query = ref('')
+Comic.getAll().then((response) => {
+  comics.value = response.data
+})
 
+const handleCurrentChange = (val: number) => {
+
+  // Comic.getAllPaginate(val).then((response) => {
+  //   comics.value = response.data
+  // })
+  // console.log(`current page: ${val}`)
+  pageConfig.pageNumber = val-1
+}
+const handleSizeChange = (val: number) => {
+  // Comic.changeSize(val).then((response) => {comics.value = response.data})
+  //  console.log(val)
+  pageConfig.pageSize = val
+}
+
+function searchComic() {
+  Comic.searchComic(query.value)
+      .then((response) => {
+        comics.value = response.data
+      })
+}
+function changePageAndSize() {
+  Comic.changePageAndSize(pageConfig.pageNumber,pageConfig.pageSize)
+      .then((response) => {
+        comics.value = response.data
+      })
+}
 
 </script>
 <style>
@@ -51,9 +108,7 @@ defineProps(['comics'])
   margin-left: 45px;
 }
 
-.carousel-show {
-  margin: 0px 50px;
-}
+
 
 .comic-description {
   display: flex;
@@ -110,5 +165,13 @@ a.button-read-more:hover {
 }
 .chart {
   margin-top: 40px;
+}
+.search-bar {
+  display: flex;
+  justify-content: center;
+  background-color: white;
+}
+.search-menu {
+  width: 500px;
 }
 </style>

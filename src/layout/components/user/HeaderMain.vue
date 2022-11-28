@@ -3,7 +3,7 @@
 
       <el-header>
         <div class="logo-image">
-          <img class="logo-web"  src="../../img/img.png">
+          <img class="logo-web"  src="../../../img/img.png">
         </div>
 
       </el-header>
@@ -18,8 +18,7 @@
 
 </template>
 <script lang="ts" setup>
-import {ref,defineProps,defineEmits} from 'vue'
-defineEmits(['search-comic','turn-dark'])
+
 
 </script>
 <style scoped>

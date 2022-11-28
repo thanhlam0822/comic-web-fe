@@ -1,17 +1,8 @@
 <template>
-  <header-main @search-comic="searchComic" @turn-dark="darkMode()">
+  <header-main >
 
   </header-main>
-  <search-item>
-    <el-input
-        v-model="input1"
-        class="w-50 m-2"
-        size="large"
-        placeholder="Please Input"
-        @keyup.enter="searchComic"
-        :suffix-icon="Search"
-    />
-  </search-item>
+
   <menu-main> </menu-main>
   <carousel-comic> </carousel-comic>
 
@@ -19,13 +10,7 @@
     <template #ranking>
       <ranking-comic> </ranking-comic>
     </template>
-    <el-pagination
-        :page-sizes="[5,8,10,12,14,15]"
-        background
-        layout="sizes,prev, pager, next"
-        :total="1000"
-        @size-change="handleSizeChange"
-        @current-change="handleCurrentChange"/>
+
 
   </main-comic>
 
@@ -35,41 +20,41 @@
 </template>
 
 <script lang="ts" setup>
-import CarouselComic from '../components/user/CarouselComic.vue'
-import HeaderMain from '../components/user/HeaderMain.vue'
-import MainComic from '../components/user/MainComic.vue'
-import SearchItem from '../components/user/SearchComic.vue'
-import MenuMain from '../components/user/MenuMain.vue'
-import RankingComic from '../components/user/RankingComic.vue'
-import { Search } from '@element-plus/icons-vue'
-import {reactive, ref} from "vue";
-import axios from "axios";
+import CarouselComic from './components/user/CarouselComic.vue'
+import HeaderMain from './components/user/HeaderMain.vue'
+import MainComic from './components/user/MainComic.vue'
+
+import MenuMain from './components/user/MenuMain.vue'
+import RankingComic from './components/user/RankingComic.vue'
+
+// import { ref,defineProps} from "vue";
+
 import Comic from '../api/Comic.js';
-let input1 = ref('')
-let comics = ref([])
 
-Comic.getAll().then((response) => {
-  comics.value = response.data
-})
+// let query = ref('')
+// let comics = ref([])
 
-const handleCurrentChange = (val: number) => {
-
-  Comic.getAllPaginate(val).then((response) => {
-    comics.value = response.data
-  })
-  console.log(`current page: ${val}`)
-}
-const handleSizeChange = (val: number) => {
-  Comic.changeSize(val).then((response) => {comics.value = response.data})
-
-}
-
-function searchComic() {
-  Comic.searchComic(input1.value)
-      .then((response) => {
-        comics.value = response.data
-      })
-}
+// Comic.getAll().then((response) => {
+//   comics.value = response.data
+// })
+//
+// const handleCurrentChange = (val: number) => {
+//
+//   Comic.getAllPaginate(val).then((response) => {
+//     comics.value = response.data
+//   })
+//   console.log(`current page: ${val}`)
+// }
+// const handleSizeChange = (val: number) => {
+//   Comic.changeSize(val).then((response) => {comics.value = response.data})
+// }
+//
+// function searchComic() {
+//   Comic.searchComic(query.value)
+//       .then((response) => {
+//         comics.value = response.data
+//       })
+// }
 // function darkMode() {
 //   let htmlDarkMode = document.querySelector("html") as HTMLHtmlElement
 //
