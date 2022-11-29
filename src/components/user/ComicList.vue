@@ -49,57 +49,51 @@
 
   </body>
   <div class="pagination">
+
+
+      <input  v-model="pageConfig.pageSize" placeholder="Number of comics"  >
+
     <el-pagination
-        :page-sizes="[5,10,15]"
         background
-        layout="sizes,prev, pager, next"
+        layout="prev, pager, next"
         :total="1000"
-        @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
-        @click="changePageAndSize"
+
     />
-
-
   </div>
+
 </template>
 <script lang="ts" setup>
-import { ref,reactive} from "vue";
+import { ref,reactive,watch,} from "vue";
 import Comic from "@/api/Comic.js";
-let pageConfig={
+
+let pageConfig=reactive({
   pageNumber: 0 ,
   pageSize:8
-}
+})
 let comics = ref([])
 let query = ref('')
-Comic.getAll().then((response) => {
+
+function addData(response) {
   comics.value = response.data
-})
+}
+
+    Comic.getAll().then(addData)
+
 
 const handleCurrentChange = (val: number) => {
-
-  // Comic.getAllPaginate(val).then((response) => {
-  //   comics.value = response.data
-  // })
-  // console.log(`current page: ${val}`)
   pageConfig.pageNumber = val-1
 }
-const handleSizeChange = (val: number) => {
-  // Comic.changeSize(val).then((response) => {comics.value = response.data})
-  //  console.log(val)
-  pageConfig.pageSize = val
-}
 
+watch(pageConfig,() => {
+
+      Comic.changePageAndSize(pageConfig.pageNumber,pageConfig.pageSize)
+          .then(addData);
+})
 function searchComic() {
   Comic.searchComic(query.value)
-      .then((response) => {
-        comics.value = response.data
-      })
-}
-function changePageAndSize() {
-  Comic.changePageAndSize(pageConfig.pageNumber,pageConfig.pageSize)
-      .then((response) => {
-        comics.value = response.data
-      })
+      .then(addData)
+
 }
 
 </script>
@@ -107,9 +101,6 @@ function changePageAndSize() {
 .new-manga {
   margin-left: 45px;
 }
-
-
-
 .comic-description {
   display: flex;
   margin: 30px 30px;
@@ -118,23 +109,18 @@ function changePageAndSize() {
 .comic-detail {
   display: flex;
   flex-direction: column;
-
   justify-content: space-evenly;
   background-color: #FFFFFF;
   width: 300px;
   height: 252px;
   text-align: left;
   margin-left: 8px;
-
 }
-
 .category-name {
   display: flex;
   font-size: 14px;
   color: grey;
-
 }
-
 a.button-read-more {
   text-decoration: none;
   color: deeppink;

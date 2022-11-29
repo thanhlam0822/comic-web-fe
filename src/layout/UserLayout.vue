@@ -2,11 +2,11 @@
   <header-main >
 
   </header-main>
-
+  <comic-search> </comic-search>
   <menu-main> </menu-main>
   <carousel-comic> </carousel-comic>
 
-  <main-comic  :comics="comics">
+  <main-comic  >
     <template #ranking>
       <ranking-comic> </ranking-comic>
     </template>
@@ -20,16 +20,16 @@
 </template>
 
 <script lang="ts" setup>
-import CarouselComic from './components/user/CarouselComic.vue'
-import HeaderMain from './components/user/HeaderMain.vue'
-import MainComic from './components/user/MainComic.vue'
-
-import MenuMain from './components/user/MenuMain.vue'
-import RankingComic from './components/user/RankingComic.vue'
+import CarouselComic from '../components/user/ComicShouldRead.vue'
+import HeaderMain from '../components/user/UserHeader.vue'
+import MainComic from '../components/user/ComicList.vue'
+import ComicSearch from '../components/user/ComicSearch.vue'
+import MenuMain from '../components/user/UserMenu.vue'
+import RankingComic from '../components/user/ComicRanking.vue'
 
 // import { ref,defineProps} from "vue";
 
-import Comic from '../api/Comic.js';
+
 
 // let query = ref('')
 // let comics = ref([])

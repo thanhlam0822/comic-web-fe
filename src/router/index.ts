@@ -1,11 +1,13 @@
-import {createRouter, createWebHistory, RouteRecordRaw} from 'vue-router'
+import {createRouter, createWebHistory, RouteRecordRaw, useRoute} from 'vue-router'
 
 
 const CustomerLayout = () => import('../layout/UserLayout.vue')
 const AdminPage = () => import  ('@/layout/AdminLayout.vue')
-const UserControl = () => import  ('@/layout/components/admin/ControlUser.vue')
-const DashBoard = () => import  ('@/layout/components/admin/MainPage.vue')
-const EditUser = () => import ('@/layout/components/admin/EditUser.vue')
+const UserControl = () => import  ('@/components/admin/UserController.vue')
+const DashBoard = () => import  ('@/components/admin/AdminPage.vue')
+const EditUser = () => import ('@/components/admin/UserEdit.vue')
+const ComicFilter = () => import('@/components/user/ComicFilter.vue')
+
 const routes: Array<RouteRecordRaw> = [
     {
         path: '/',
@@ -28,6 +30,12 @@ const routes: Array<RouteRecordRaw> = [
         ],
         redirect: '/admin/dashboard'
 
+    },
+    {
+        path:"/search-comic",
+
+
+        component:ComicFilter
     }
 
 

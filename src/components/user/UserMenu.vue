@@ -25,10 +25,10 @@
 
 </template>
 
-<script>
-export default {
-  name: "MenuMain.vue"
-}
+<script lang="ts" setup>
+import {ref} from "vue";
+const activeIndex=ref('1')
+
 </script>
 
 <style scoped>
