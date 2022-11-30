@@ -1,11 +1,11 @@
 <template>
   <el-container class="search-bar">
-        <el-col :span="4" >
+        <el-col :span="7" >
           <el-input
               v-model="query"
               class="w-50 m-2"
               size="large"
-              placeholder="Please Input"
+              placeholder="Search Comic here"
               :suffix-icon="Search"
               @keyup.enter="search"
           />

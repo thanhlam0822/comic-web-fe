@@ -2,14 +2,14 @@
   <div class="search-bar">
     <div class="search-menu">
 
-      <el-input
-          v-model="query"
-          class="w-50 m-2"
-          size="large"
-          placeholder="Please Input"
-          @keyup.enter="searchComic"
+<!--      <el-input-->
+<!--          v-model="query"-->
+<!--          class="w-50 m-2"-->
+<!--          size="large"-->
+<!--          placeholder="Please Input"-->
+<!--          @keyup.enter="searchComic"-->
 
-      />
+<!--      />-->
     </div>
   </div>
   <body>
@@ -34,6 +34,7 @@
               <a href="" class="button-read-more">Read-more ></a>
             </div>
           </div>
+
         </div>
       </div>
     </el-main>
@@ -83,6 +84,7 @@ function addData(response) {
 
 const handleCurrentChange = (val: number) => {
   pageConfig.pageNumber = val-1
+  console.log(pageConfig.pageNumber)
 }
 
 watch(pageConfig,() => {
@@ -90,11 +92,11 @@ watch(pageConfig,() => {
       Comic.changePageAndSize(pageConfig.pageNumber,pageConfig.pageSize)
           .then(addData);
 })
-function searchComic() {
-  Comic.searchComic(query.value)
-      .then(addData)
-
-}
+// function searchComic() {
+//   Comic.searchComic(query.value)
+//       .then(addData)
+//
+// }
 
 </script>
 <style>
@@ -111,7 +113,7 @@ function searchComic() {
   flex-direction: column;
   justify-content: space-evenly;
   background-color: #FFFFFF;
-  width: 300px;
+  width: 245px;
   height: 252px;
   text-align: left;
   margin-left: 8px;
