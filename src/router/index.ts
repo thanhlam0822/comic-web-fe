@@ -6,7 +6,7 @@ const AdminPage = () => import  ('@/layout/AdminLayout.vue')
 const UserControl = () => import  ('@/components/admin/UserController.vue')
 const DashBoard = () => import  ('@/components/admin/AdminPage.vue')
 const EditUser = () => import ('@/components/admin/UserEdit.vue')
-const ComicFilter = () => import('@/components/user/ComicFilter.vue')
+const ComicFilter = () => import('@/layout/ComicFilterLayout.vue')
 
 const routes: Array<RouteRecordRaw> = [
     {

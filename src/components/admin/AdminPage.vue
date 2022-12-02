@@ -97,7 +97,7 @@
 <script lang="ts" setup>
 import {ref} from 'vue'
 import axios from "axios";
-const status = true;
+
 const imgUrl = 'https://f5-zpcloud.zdn.vn/7702170006391086294/594ab303a5697c372578.jpg'
 const userList = ref([])
 axios.get("http://localhost:8090/api/user/list")
