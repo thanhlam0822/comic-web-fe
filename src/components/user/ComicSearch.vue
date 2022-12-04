@@ -2,7 +2,7 @@
   <el-container class="search-bar">
         <el-col :span="7" >
           <el-input
-              v-model="searchQuery"
+              v-model="keyword"
               class="w-50 m-2"
               size="large"
               placeholder="Search Comic here"
@@ -17,9 +17,10 @@ import {useRouter} from "vue-router";
 import {ref} from "vue";
 import { Search } from '@element-plus/icons-vue'
 const router = useRouter()
-let searchQuery = ref('')
+let keyword = ref('')
+
 function search() {
-  router.push({path:"/search-comic",query:{keyword:searchQuery.value}})
+  router.push({name:"ComicFilter",query:{keyword:keyword.value}})
 }
 </script>
 
@@ -27,6 +28,5 @@ function search() {
 .search-bar {
   display: flex;
   justify-content: center;
-  background: white;
 }
 </style>

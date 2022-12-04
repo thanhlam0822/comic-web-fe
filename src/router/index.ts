@@ -3,11 +3,13 @@ import {createRouter, createWebHistory, RouteRecordRaw, useRoute} from 'vue-rout
 
 const CustomerLayout = () => import('../layout/UserLayout.vue')
 const AdminPage = () => import  ('@/layout/AdminLayout.vue')
-const UserControl = () => import  ('@/components/admin/UserController.vue')
+const UserControl = () => import  ('@/components/admin/UserAdd.vue')
 const DashBoard = () => import  ('@/components/admin/AdminPage.vue')
 const EditUser = () => import ('@/components/admin/UserEdit.vue')
 const ComicFilter = () => import('@/layout/ComicFilterLayout.vue')
-
+const CategoryController = () => import('@/components/admin/CategoryAdd.vue')
+const UserList = () => import('@/components/admin/UserList.vue')
+const CategoryList = () => import('@/components/admin/CategoryList.vue')
 const routes: Array<RouteRecordRaw> = [
     {
         path: '/',
@@ -23,19 +25,27 @@ const routes: Array<RouteRecordRaw> = [
         path: "/admin",
         component: AdminPage,
         children: [
-            {path: 'user-control', component: UserControl},
-            {path: 'dashboard', component: DashBoard},
-            {path:'edit-user/:id',component:EditUser}
+            {path: 'user-add', component: UserControl},
+            {path: 'dashboard', component: DashBoard ,
+                children: [
+                    {path:"user-list",component:UserList},
+                    {path:"category-list",component:CategoryList}
+                ]},
+            {path: 'category-add',component:CategoryController}
 
         ],
-        redirect: '/admin/dashboard'
+        redirect: '/admin/dashboard/user-list'
 
     },
     {
         path:"/search-comic",
-
+        name:"ComicFilter",
 
         component:ComicFilter
+    },
+    {
+        path: '/edit-user/:id',
+        component:EditUser
     }
 
 

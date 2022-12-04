@@ -6,8 +6,8 @@
       <div class="detail">
         <div class="user-icon purple-background"><el-icon><Avatar /></el-icon></div>
         <div class="user-amount">
-          <div class="user-num">1000</div>
-          <div class="text-gray">User</div>
+          <div v-for="total in totalUser" :key="total" class="user-num">{{total}}</div>
+          <div class="text-gray"><router-link class="menu-items" to="/admin/dashboard/user-list">User</router-link></div>
         </div>
       </div>
       </div>
@@ -18,7 +18,7 @@
           <div class="user-icon blue-background"><el-icon><Paperclip /></el-icon></div>
           <div class="user-amount">
             <div class="user-num">1000</div>
-            <div class="text-gray">Categories</div>
+            <div class="text-gray"><router-link class="menu-items" to="/admin/dashboard/category-list"> Categories </router-link></div>
           </div>
         </div>
       </div>
@@ -35,79 +35,89 @@
       </div>
     </el-col>
   </el-row>
-  <div class="user-list">
+  <router-view> </router-view>
+<!--  <div class="user-list">-->
 
-    <el-row  justify="space-around" class="column">
-      <el-col :span="6"><div class="grid-content " />Name</el-col>
-      <el-col :span="4"><div class="grid-content " />User Detail</el-col>
-      <el-col :span="4"><div class="grid-content " />Status</el-col>
-      <el-col :span="4"><div class="grid-content " />Role</el-col>
-      <el-col :span="4"><div class="grid-content " /></el-col>
-    </el-row>
+<!--    <el-row  justify="space-around" class="column">-->
+<!--      <el-col :span="6"><div class="grid-content " />Name</el-col>-->
+<!--      <el-col :span="4"><div class="grid-content " />User Detail</el-col>-->
+<!--      <el-col :span="4"><div class="grid-content " />Status</el-col>-->
+<!--      <el-col :span="4"><div class="grid-content " />Role</el-col>-->
+<!--      <el-col :span="4"><div class="grid-content " /></el-col>-->
+<!--    </el-row>-->
 
 
-    <el-row  justify="space-around" class="row" v-for="user in userList" :key="user" >
-      <el-col :span="6"><div class="grid-content " />
-        <div class="name">
-          <div class="user-data">
-            <el-row >
-              <el-col >
-                <div >
-                  <div>
-                    <el-avatar :size="50" :src="imgUrl" />
-                  </div>
-                </div>
-              </el-col>
-            </el-row>
-          </div>
-          <div class="user-info">
-            <div>{{user.name}}</div>
-            <div>{{user.gmail}} </div>
-          </div>
-        </div>
-      </el-col>
-      <el-col :span="4"><div class="grid-content " />
-        <div class="user-detail">
-          <div>{{user.job}}</div>
-          <div>{{user.position}}</div>
-        </div>
-      </el-col>
-      <el-col :span="4"><div class="grid-content " />
-        <div class="user-status">
-          <div v-if="user.status == 'ACTIVE'">
-            <el-button type="success" >Active</el-button>
-          </div>
-          <div v-else>
-            <el-button type="danger" >Deleted</el-button>
-          </div>
-        </div>
-      </el-col>
-      <el-col :span="4"><div class="grid-content " /><div class="user-role">{{user.role}}</div></el-col>
-      <el-col :span="4"><div class="grid-content " />
-        <div class="user-active">
-          <router-link :to="'/edit-user/' + user.id"> <el-button type="primary">Edit</el-button> </router-link>
-          <el-button @click="deleteUser(user.id)" type="danger">Delete</el-button>
-        </div>
-      </el-col>
+<!--    <el-row  justify="space-around" class="row" v-for="user in userList" :key="user" >-->
+<!--      <el-col :span="6"><div class="grid-content " />-->
+<!--        <div class="name">-->
+<!--          <div class="user-data">-->
+<!--            <el-row >-->
+<!--              <el-col >-->
+<!--                <div >-->
+<!--                  <div>-->
+<!--                    <el-avatar :size="50" :src="imgUrl" />-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </el-col>-->
+<!--            </el-row>-->
+<!--          </div>-->
+<!--          <div class="user-info">-->
+<!--            <div>{{user.name}}</div>-->
+<!--            <div>{{user.gmail}} </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </el-col>-->
+<!--      <el-col :span="4"><div class="grid-content " />-->
+<!--        <div class="user-detail">-->
+<!--          <div>{{user.job}}</div>-->
+<!--          <div>{{user.position}}</div>-->
+<!--        </div>-->
+<!--      </el-col>-->
+<!--      <el-col :span="4"><div class="grid-content " />-->
+<!--        <div class="user-status">-->
+<!--          <div v-if="user.status == 'ACTIVE'">-->
+<!--            <el-button type="success" >Active</el-button>-->
+<!--          </div>-->
+<!--          <div v-else>-->
+<!--            <el-button type="danger" >Deleted</el-button>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </el-col>-->
+<!--      <el-col :span="4"><div class="grid-content " /><div class="user-role">{{user.role}}</div></el-col>-->
+<!--      <el-col :span="4"><div class="grid-content " />-->
+<!--        <div class="user-active">-->
+<!--&lt;!&ndash;          <router-link :to="'edit-user/' + user.id"> <el-button type="primary">Edit</el-button> </router-link>&ndash;&gt;-->
+<!--           <el-button type="primary" @click="pushToEdit(user.id)">Edit</el-button>-->
 
-    </el-row>
-  </div>
+<!--          <el-button @click="deleteUser(user.id)" type="danger">Delete</el-button>-->
+<!--        </div>-->
+<!--      </el-col>-->
+
+<!--    </el-row>-->
+<!--  </div>-->
 </template>
 
 <script lang="ts" setup>
 import {ref} from 'vue'
 import axios from "axios";
-
-const imgUrl = 'https://f5-zpcloud.zdn.vn/7702170006391086294/594ab303a5697c372578.jpg'
-const userList = ref([])
+import {useRouter} from "vue-router";
+// const router = useRouter()
+// const imgUrl = 'https://f5-zpcloud.zdn.vn/7702170006391086294/594ab303a5697c372578.jpg'
+ let totalUser = ref([1])
+// const userList = ref([])
 axios.get("http://localhost:8090/api/user/list")
     .then((response) => {
-      userList.value = response.data
+      // userList.value = response.data
+      totalUser.value.splice(0,1,response.data.length)
     })
-function deleteUser(id:number) {
-  axios.patch("http://localhost:8090/api/user/" + id)
-
-}
+// console.log(totalUser)
+// function deleteUser(id:number) {
+//   axios.patch("http://localhost:8090/api/user/" + id)
+//
+// }
+// function pushToEdit(id) {
+//   router.push({path:`/edit-user/${id}`})
+// }
 </script>
 
 <style scoped>
@@ -188,5 +198,9 @@ function deleteUser(id:number) {
 }
 .name {
   display: flex;
+}
+.menu-items {
+  color: #6B7280;
+  text-decoration: none;
 }
 </style>

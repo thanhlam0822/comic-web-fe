@@ -15,6 +15,7 @@
     </el-col>
 
   </el-row>
+
   <body>
   <el-container>
     <el-main >
@@ -60,25 +61,25 @@
 
     />
   </div>
+
 </template>
 
 <script lang="ts" setup>
-import {reactive, ref, toRef, toRefs, watch} from "vue";
+import {reactive, ref,watch} from "vue";
 import {useRoute, useRouter} from 'vue-router'
 import Comic from "@/api/Comic.js";
 import HeaderMain from '../components/user/UserHeader.vue'
-
-import ComicSearch from '../components/user/ComicSearch.vue'
 import MenuMain from '../components/user/UserMenu.vue'
+import ComicSearch from "@/components/user/ComicSearch.vue";
 const router = useRouter();
 const route = useRoute();
-const keyword = route.query.keyword;
+const keyword = route.query.keyword
 let comics = ref([])
 const query = ref('')
+
 function addData(response) {
   comics.value = response.data
 }
-
 Comic.filterComic(keyword,query.value).then(addData)
 
 
@@ -94,13 +95,25 @@ const handleCurrentChange = (val: number) => {
 
 }
 function filterComic() {
-  Comic.filterComic(keyword,query.value).then(addData)
+  Comic.filterComic(route.query.keyword,query.value).then(addData)
+  query.value = '';
 }
 
 watch(filterPageConfig,() => {
- Comic.filterComic(keyword,query.value,filterPageConfig.pageNumber,filterPageConfig.pageSize).then(addData)
+ Comic.filterComic(route.query.keyword,query.value,filterPageConfig.pageNumber,filterPageConfig.pageSize).then(addData)
 })
+watch(
+    () => route.query.keyword,
+    (oldV,newV  ) => {
+      console.log(newV,oldV)
 
+      Comic.filterComic(oldV,query.value,filterPageConfig.pageNumber,filterPageConfig.pageSize).then(addData)
+    },
+    {
+
+      immediate:true
+    }
+);
 
 
 
@@ -119,7 +132,10 @@ watch(filterPageConfig,() => {
 </script>
 
 <style scoped>
-
+.search-bar {
+  display: flex;
+  justify-content: center;
+}
 .comic-description {
   display: flex;
   margin: 30px 30px;

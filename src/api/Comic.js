@@ -19,7 +19,7 @@ export default {
     rankComic(dateSelect) {
         return Api.get(`ranking/`+dateSelect)
     },
-   filterComic(query1,query2,pageNumber,pageSize) {
+    filterComic(query1,query2,pageNumber,pageSize) {
         return Api.get('search2',{
             params: {
                 query1:query1,
@@ -29,7 +29,7 @@ export default {
             }
 
         })
-   }
+    }
 
 
 

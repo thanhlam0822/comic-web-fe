@@ -1,5 +1,17 @@
 <template>
+  <div class="search-bar">
+    <div class="search-menu">
 
+<!--      <el-input-->
+<!--          v-model="query"-->
+<!--          class="w-50 m-2"-->
+<!--          size="large"-->
+<!--          placeholder="Please Input"-->
+<!--          @keyup.enter="searchComic"-->
+
+<!--      />-->
+    </div>
+  </div>
   <body>
   <el-container>
     <el-main >
@@ -61,26 +73,30 @@ let pageConfig=reactive({
   pageSize:8
 })
 let comics = ref([])
-
+let query = ref('')
 
 function addData(response) {
   comics.value = response.data
 }
 
+    Comic.getAll().then(addData)
 
-  Comic.searchComic('').then(addData)
 
 const handleCurrentChange = (val: number) => {
   pageConfig.pageNumber = val-1
-
+  console.log(pageConfig.pageNumber)
 }
 
 watch(pageConfig,() => {
 
-      Comic.searchComic('',pageConfig.pageNumber,pageConfig.pageSize)
+      Comic.changePageAndSize(pageConfig.pageNumber,pageConfig.pageSize)
           .then(addData);
 })
-
+// function searchComic() {
+//   Comic.searchComic(query.value)
+//       .then(addData)
+//
+// }
 
 </script>
 <style>
@@ -138,6 +154,12 @@ a.button-read-more:hover {
 .chart {
   margin-top: 40px;
 }
-
-
+.search-bar {
+  display: flex;
+  justify-content: center;
+  background-color: white;
+}
+.search-menu {
+  width: 500px;
+}
 </style>
