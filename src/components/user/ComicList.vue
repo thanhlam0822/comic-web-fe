@@ -79,7 +79,7 @@ function addData(response) {
   comics.value = response.data
 }
 
-    Comic.getAll().then(addData)
+    Comic.searchComic('').then(addData)
 
 
 const handleCurrentChange = (val: number) => {
@@ -89,7 +89,7 @@ const handleCurrentChange = (val: number) => {
 
 watch(pageConfig,() => {
 
-      Comic.changePageAndSize(pageConfig.pageNumber,pageConfig.pageSize)
+      Comic.searchComic('',pageConfig.pageNumber,pageConfig.pageSize)
           .then(addData);
 })
 // function searchComic() {

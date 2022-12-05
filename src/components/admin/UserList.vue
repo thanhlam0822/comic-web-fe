@@ -84,57 +84,7 @@ function pushToEdit(id) {
 </script>
 
 <style scoped>
-.title {
-  font-size: 20px;
 
-}
-.web-information {
-  border: 1px solid white;
-  width: 350px;
-  height: 100px;
-  border-radius: 0.375rem;
-  background-color: white;
-}
-.user-icon {
-  font-size: 30px;
-  color: white;
-
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  width: 50px;
-  height: 50px;
-
-  align-items: center;
-  margin-left: 10px;
-}
-.web-information {
-  display: flex;
-  align-items: center;
-}
-.detail {
-  display: flex;
-  align-items: center;
-
-}
-.user-amount {
-  margin-left: 25px;
-  font-size: 20px;
-}
-.text-gray {
-  color: #6B7280
-}
-.purple-background {
-  background-color: purple;
-
-}
-.blue-background {
-  background-color: #2563ebbf;
-
-}
-.pink-background {
-  background-color: #db2777bf;
-}
 .user-list{
   margin-top: 50px;
   display: flex;

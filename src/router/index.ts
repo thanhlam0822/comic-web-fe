@@ -10,6 +10,7 @@ const ComicFilter = () => import('@/layout/ComicFilterLayout.vue')
 const CategoryController = () => import('@/components/admin/CategoryAdd.vue')
 const UserList = () => import('@/components/admin/UserList.vue')
 const CategoryList = () => import('@/components/admin/CategoryList.vue')
+const CategoryEdit = () => import('@/components/admin/CategoryEdit.vue')
 const routes: Array<RouteRecordRaw> = [
     {
         path: '/',
@@ -46,6 +47,10 @@ const routes: Array<RouteRecordRaw> = [
     {
         path: '/edit-user/:id',
         component:EditUser
+    },
+    {
+        path: '/edit-category/:id',
+        component:CategoryEdit
     }
 
 

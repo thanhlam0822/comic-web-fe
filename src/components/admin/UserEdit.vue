@@ -12,7 +12,6 @@
       style="max-width: 460px"
       @keyup.enter.prevent="editUser"
   >
-
       <el-form-item label="ID">
         <el-input v-model="id" disabled />
       </el-form-item>
@@ -53,25 +52,14 @@ const route = useRoute()
 const router = useRouter()
 const id = route.params.id
 const labelPosition = ref('right')
-let user = ref(null)
+
 let success = ref(false)
-// let formEdit = reactive({
-//   name: '',
-//   username: '',
-//   gmail: '',
-//   job: '',
-//   position:''
-// })
 let name = ref(null);
 let username = ref(null);
 let gmail= ref(null);
 let job = ref(null)
 let position = ref(null)
-axios.get(`http://localhost:8090/api/user/${id}`).then((response) => {
-  user.value = response.data
 
-
-})
 function editUser() {
   axios.put(`http://localhost:8090/api/user/edit/${id}`, {
       name :name.value,
