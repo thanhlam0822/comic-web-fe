@@ -6,11 +6,12 @@ const AdminPage = () => import  ('@/layout/AdminLayout.vue')
 const UserControl = () => import  ('@/components/admin/UserAdd.vue')
 const DashBoard = () => import  ('@/components/admin/AdminPage.vue')
 const EditUser = () => import ('@/components/admin/UserEdit.vue')
-const ComicFilter = () => import('@/layout/ComicFilterLayout.vue')
+const ComicFilter = () => import('@/components/user/ComicFilter.vue')
 const CategoryController = () => import('@/components/admin/CategoryAdd.vue')
 const UserList = () => import('@/components/admin/UserList.vue')
 const CategoryList = () => import('@/components/admin/CategoryList.vue')
 const CategoryEdit = () => import('@/components/admin/CategoryEdit.vue')
+const ComicListCo  = () => import('@/components/admin/ComicListCo.vue')
 const routes: Array<RouteRecordRaw> = [
     {
         path: '/',
@@ -30,7 +31,8 @@ const routes: Array<RouteRecordRaw> = [
             {path: 'dashboard', component: DashBoard ,
                 children: [
                     {path:"user-list",component:UserList},
-                    {path:"category-list",component:CategoryList}
+                    {path:"category-list",component:CategoryList},
+                    {path:"comic-list",component:ComicListCo}
                 ]},
             {path: 'category-add',component:CategoryController}
 

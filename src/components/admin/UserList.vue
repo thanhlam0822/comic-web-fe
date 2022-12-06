@@ -52,7 +52,11 @@
           <!--          <router-link :to="'edit-user/' + user.id"> <el-button type="primary">Edit</el-button> </router-link>-->
           <el-button type="primary" @click="pushToEdit(user.id)">Edit</el-button>
 
-          <el-button @click="deleteUser(user.id)" type="danger">Delete</el-button>
+<!--          <el-button @click="deleteUser(user.id)" type="danger">Delete</el-button>-->
+          <dialog-custom :lists="userList"
+                         @delete="deleteUser(user.id)">
+
+          </dialog-custom>
         </div>
       </el-col>
 
@@ -64,6 +68,7 @@
 import {ref} from 'vue'
 import axios from "axios";
 import {useRouter} from "vue-router";
+import DialogCustom from '@/components/admin/DialogCustom.vue'
 const router = useRouter()
 const imgUrl = 'https://f5-zpcloud.zdn.vn/7702170006391086294/594ab303a5697c372578.jpg'
 
@@ -75,7 +80,9 @@ axios.get("http://localhost:8090/api/user/list")
     })
 
 function deleteUser(id:number) {
-  axios.patch("http://localhost:8090/api/user/" + id)
+  axios.put("http://localhost:8090/api/user/" + id).then((response) => {
+    userList.value = response.data
+  })
 
 }
 function pushToEdit(id) {

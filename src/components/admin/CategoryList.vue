@@ -5,7 +5,7 @@
       <el-row justify="space-around" class="column">
         <el-col :span="6">
           <div class="grid-content "/>
-          STT
+          ID
         </el-col>
         <el-col :span="5">
           <div class="grid-content "/>
@@ -18,12 +18,12 @@
     </div>
 
 
-    <el-row justify="space-around" class="row " v-for="(category,index) in categories" :key="category">
+    <el-row justify="space-around" class="row " v-for="category in categories" :key="category">
       <el-col :span="6">
         <div class="grid-content "/>
         <div class="id">
-          {{ index +1 }}
-          {{category.categoryId}}
+          {{ category.categoryId }}
+
         </div>
       </el-col>
       <el-col :span="4">
@@ -35,25 +35,15 @@
       </el-col>
       <el-col :span="4">
         <div class="grid-content "/>
-
         <el-button type="primary" @click="pushToEdit(category.categoryId)">Edit</el-button>
-        <el-button type="danger" @click="centerDialogVisible = true">Delete</el-button>
-        <div class="alert">
-          <el-dialog v-model="centerDialogVisible" title="Warning" width="30%" center>
-          <span>
-            Do you want to delete this category ?
-          </span>
-            <template #footer>
-            <span class="dialog-footer">
-              <el-button @click="centerDialogVisible = false">Cancel</el-button>
-              <el-button type="primary" @click="deleteCategory(category.categoryId)">
-                Confirm
-              </el-button>
-            </span>
-            </template>
-          </el-dialog>
-        </div>
+        <dialog-custom :lists="categories"
+                       @delete="deleteCategory(category.categoryId)">
+
+        </dialog-custom>
+
       </el-col>
+
+
     </el-row>
   </div>
 
@@ -62,29 +52,34 @@
 
 <script lang="ts" setup>
 import axios from "axios";
-import {ref,watch} from "vue";
+import {ref, computed} from "vue";
 import {useRouter} from "vue-router";
+import DialogCustom from '@/components/admin/DialogCustom.vue'
+
+
 
 const router = useRouter()
-const centerDialogVisible = ref(false)
+
+
 let categories = ref([])
-let listLength = ref(0)
+
 axios.get("http://localhost:8090/api/category/list").then((response) => {
   categories.value = response.data
 
 
 })
 
-function deleteCategory(id) {
-  axios.delete(`http://localhost:8090/api/category/${id}`)
+function deleteCategory(id: number) {
 
-  centerDialogVisible.value = false
+  axios.delete(`http://localhost:8090/api/category/${id}`).then((response) => {
+    categories.value = response.data
+  })
 
 }
+
 function pushToEdit(id) {
   router.push({path: `/edit-category/${id}`})
 }
-
 </script>
 
 <style scoped>

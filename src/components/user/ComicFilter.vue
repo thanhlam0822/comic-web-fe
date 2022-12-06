@@ -68,8 +68,8 @@
 import {reactive, ref,watch} from "vue";
 import {useRoute, useRouter} from 'vue-router'
 import Comic from "@/api/Comic.js";
-import HeaderMain from '../components/user/UserHeader.vue'
-import MenuMain from '../components/user/UserMenu.vue'
+import HeaderMain from './UserHeader.vue'
+import MenuMain from './UserMenu.vue'
 import ComicSearch from "@/components/user/ComicSearch.vue";
 const router = useRouter();
 const route = useRoute();
