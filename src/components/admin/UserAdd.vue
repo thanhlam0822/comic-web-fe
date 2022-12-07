@@ -10,7 +10,7 @@
       :label-position="labelPosition"
       label-width="100px"
       style="max-width: 460px"
-      @keyup.enter.prevent="editUser"
+      @keyup.enter.prevent="addUser"
   >
     <el-form-item label="Name">
       <el-input v-model="name" />

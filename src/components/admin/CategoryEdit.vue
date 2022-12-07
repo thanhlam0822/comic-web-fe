@@ -10,7 +10,7 @@
       label-width="100px"
 
       style="max-width: 460px"
-      @keyup.enter.prevent="editUser"
+      @keyup.enter.prevent="editCategory"
   >
 
     <el-form-item label="ID">
@@ -20,7 +20,7 @@
       <el-input v-model="name" />
     </el-form-item>
     <el-form-item >
-      <el-button @click.prevent="editUser" type="primary " plain>Edit</el-button>
+      <el-button @click.prevent="editCategory" type="primary " plain>Edit</el-button>
       <el-button @click="goBack" type="primary " plain>Go back</el-button>
     </el-form-item>
   </el-form>
@@ -36,7 +36,7 @@ const id = route.params.id
 const labelPosition = ref('right')
 let success = ref(false)
 let name = ref(null);
-function editUser() {
+function editCategory() {
   axios.put(`http://localhost:8090/api/category/${id}`, {
     name :name.value,
 

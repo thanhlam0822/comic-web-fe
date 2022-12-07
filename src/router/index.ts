@@ -12,6 +12,7 @@ const UserList = () => import('@/components/admin/UserList.vue')
 const CategoryList = () => import('@/components/admin/CategoryList.vue')
 const CategoryEdit = () => import('@/components/admin/CategoryEdit.vue')
 const ComicListCo  = () => import('@/components/admin/ComicListCo.vue')
+const ComicAdd = () => import('@/components/admin/ComicAdd.vue')
 const routes: Array<RouteRecordRaw> = [
     {
         path: '/',
@@ -34,7 +35,8 @@ const routes: Array<RouteRecordRaw> = [
                     {path:"category-list",component:CategoryList},
                     {path:"comic-list",component:ComicListCo}
                 ]},
-            {path: 'category-add',component:CategoryController}
+            {path: 'category-add',component:CategoryController},
+            {path: 'comic-add',component:ComicAdd}
 
         ],
         redirect: '/admin/dashboard/user-list'
@@ -54,6 +56,7 @@ const routes: Array<RouteRecordRaw> = [
         path: '/edit-category/:id',
         component:CategoryEdit
     }
+
 
 
 ]
