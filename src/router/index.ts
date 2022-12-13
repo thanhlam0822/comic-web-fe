@@ -14,6 +14,7 @@ const UserProfile  = () => import('@/components/auththentication/UserProfile.vue
 const CategoryList = () => import('@/components/admin/CategoryList.vue')
 const CategoryEdit = () => import('@/components/admin/CategoryEdit.vue')
 const ComicListCo  = () => import('@/components/admin/ComicListCo.vue')
+const ComicAdd  = () => import('@/components/admin/ComicAdd.vue')
 const AdminRole  = () => import('@/components/auththentication/AdminRole.vue')
 const UserRole = () => import('@/components/auththentication/UserRole.vue')
 
@@ -37,9 +38,11 @@ const routes: Array<RouteRecordRaw> = [
                 children: [
                     {path:"user-list",component:UserList},
                     {path:"category-list",component:CategoryList},
-                    {path:"comic-list",component:ComicListCo}
+                    {path:"comic-list",component:ComicListCo},
+
                 ]},
-            {path: 'category-add',component:CategoryController}
+            {path: 'category-add',component:CategoryController},
+            {path:"comic-add",component:ComicAdd}
 
         ],
         redirect: '/admin/dashboard/user-list'

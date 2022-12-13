@@ -28,7 +28,6 @@
       <el-input v-model="imgLink" />
     </el-form-item>
 
-
     <el-form-item >
       <el-button @click.prevent="addComic" type="primary " plain>Add User</el-button>
       <el-button @click="goBack" type="primary " plain>Go back</el-button>

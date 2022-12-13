@@ -16,10 +16,10 @@
             <router-link class="menu-items" to="/admin/dashboard"><el-menu-item index="1"><el-icon><List /></el-icon>Dashboard</el-menu-item> </router-link>
             <router-link class="menu-items"  to="/admin/user-add"> <el-menu-item index="2"><el-icon><UserFilled /></el-icon>User</el-menu-item></router-link>
             <router-link class="menu-items"  to="/admin/category-add"><el-menu-item index="3"><el-icon><Checked /></el-icon>Category</el-menu-item> </router-link>
+            <router-link class="menu-items"  to="/admin/comic-add">  <el-menu-item index="4"><el-icon><Reading /></el-icon>Comic</el-menu-item></router-link>
 
 
 
-            <el-menu-item index="4"><el-icon><Reading /></el-icon>Comic</el-menu-item>
           </el-menu>
         </menu-admin>
 
