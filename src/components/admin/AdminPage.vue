@@ -43,11 +43,13 @@
 import {ref} from 'vue'
 import axios from "axios";
 import {useRouter} from "vue-router";
-
+import authHeader from '@/services/auth-header.js';
  // let totalUser = ref([1])
 let totalUser = ref(0)
 let totalCategory = ref(0)
-axios.get("http://localhost:8090/api/user/list")
+axios.get("http://localhost:8090/api/user/list",{
+  headers: authHeader()
+})
     .then((response) => {
       // userList.value = response.data
       // totalUser.value.splice(0,1,response.data.length)

@@ -69,11 +69,14 @@ import {ref} from 'vue'
 import axios from "axios";
 import {useRouter} from "vue-router";
 import DialogCustom from '@/components/admin/DialogCustom.vue'
+import authHeader from '@/services/auth-header.js';
 const router = useRouter()
 const imgUrl = 'https://f5-zpcloud.zdn.vn/7702170006391086294/594ab303a5697c372578.jpg'
 
 const userList = ref([])
-axios.get("http://localhost:8090/api/user/list")
+axios.get("http://localhost:8090/api/user/list",{
+  headers: authHeader()
+})
     .then((response) => {
       userList.value = response.data
 

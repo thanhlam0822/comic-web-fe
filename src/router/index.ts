@@ -9,10 +9,14 @@ const EditUser = () => import ('@/components/admin/UserEdit.vue')
 const ComicFilter = () => import('@/components/user/ComicFilter.vue')
 const CategoryController = () => import('@/components/admin/CategoryAdd.vue')
 const UserList = () => import('@/components/admin/UserList.vue')
+const UserLogin  = () => import('@/components/auththentication/UserLogin.vue')
+const UserProfile  = () => import('@/components/auththentication/UserProfile.vue')
 const CategoryList = () => import('@/components/admin/CategoryList.vue')
 const CategoryEdit = () => import('@/components/admin/CategoryEdit.vue')
 const ComicListCo  = () => import('@/components/admin/ComicListCo.vue')
-const ComicAdd = () => import('@/components/admin/ComicAdd.vue')
+const AdminRole  = () => import('@/components/auththentication/AdminRole.vue')
+const UserRole = () => import('@/components/auththentication/UserRole.vue')
+
 const routes: Array<RouteRecordRaw> = [
     {
         path: '/',
@@ -35,8 +39,7 @@ const routes: Array<RouteRecordRaw> = [
                     {path:"category-list",component:CategoryList},
                     {path:"comic-list",component:ComicListCo}
                 ]},
-            {path: 'category-add',component:CategoryController},
-            {path: 'comic-add',component:ComicAdd}
+            {path: 'category-add',component:CategoryController}
 
         ],
         redirect: '/admin/dashboard/user-list'
@@ -55,7 +58,23 @@ const routes: Array<RouteRecordRaw> = [
     {
         path: '/edit-category/:id',
         component:CategoryEdit
-    }
+    },
+    {
+        path: "/login",
+        component: UserLogin
+    },
+    {
+        path: "/profile",
+        component: UserProfile
+    },
+    {
+        path: "/user-role",
+        component : UserRole
+    },
+    {
+        path: "/admin-role",
+        component : AdminRole
+    },
 
 
 
