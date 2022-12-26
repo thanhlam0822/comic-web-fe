@@ -36,7 +36,7 @@
       <el-col :span="4">
         <div class="grid-content "/>
         <el-button type="primary" @click="pushToEdit(category.categoryId)">Edit</el-button>
-        <dialog-custom :lists="categories"
+        <dialog-custom
                        @delete="deleteCategory(category.categoryId)">
 
         </dialog-custom>
@@ -52,7 +52,7 @@
 
 <script lang="ts" setup>
 import axios from "axios";
-import {ref, computed} from "vue";
+import {ref} from "vue";
 import {useRouter} from "vue-router";
 import DialogCustom from '@/components/admin/DialogCustom.vue'
 

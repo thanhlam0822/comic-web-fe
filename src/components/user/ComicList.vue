@@ -31,7 +31,7 @@
                 <el-rate disabled v-model="comic.starRate" size="large"/>
               </div>
               <div class="author-name">{{ comic.author }}</div>
-              <a href="" class="button-read-more">Read-more ></a>
+              <a  :href="'/comic-detail/' + comic.comicId" class="button-read-more">Read-more ></a>
             </div>
           </div>
 
@@ -67,6 +67,7 @@
 <script lang="ts" setup>
 import { ref,reactive,watch,} from "vue";
 import Comic from "@/api/Comic.js";
+import router from "@/router";
 
 let pageConfig=reactive({
   pageNumber: 0 ,
@@ -97,6 +98,9 @@ watch(pageConfig,() => {
 //       .then(addData)
 //
 // }
+let pushToDetailPage = (id:null) => {
+  router.push(`/comic-detail/${id}`)
+}
 
 </script>
 <style>

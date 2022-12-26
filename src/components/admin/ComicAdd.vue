@@ -1,4 +1,5 @@
 <template>
+
 <h1>Add Comic Form </h1>
   <el-row justify="center" v-if="success">
     <el-col :span="5" >
@@ -23,6 +24,32 @@
     </el-form-item>
     <el-form-item label="Status">
       <el-input v-model="status"  />
+    </el-form-item>
+    <el-form-item>
+      <el-dropdown>
+        <span class="el-dropdown-link">
+          Category List
+          <el-icon class="el-icon--right">
+            <arrow-down />
+          </el-icon>
+        </span>
+        <template #dropdown>
+          <el-dropdown-menu>
+            <div v-for="item in categoryList" :key="item">
+              <el-dropdown-item @click="pushToArray(item.categoryId,item.categoryName)"> {{item.categoryName}}</el-dropdown-item>
+            </div>
+
+          </el-dropdown-menu>
+        </template>
+      </el-dropdown>
+    </el-form-item>
+
+    <el-form-item>
+      <div v-for="name in categoryName" :key="name"> {{name}}
+        <button @click="remove(name)">x</button>
+      </div>
+      <div v-for="id in idList" :key="id">
+      </div>
     </el-form-item>
     <el-form-item label="ImgLink">
       <el-input v-model="imgLink" />
@@ -49,9 +76,16 @@ let author = ref(null);
 let description = ref(null);
 let imgLink = ref(null)
 let status = ref(null)
-
-function addComic() {
-  axios.post(`http://localhost:8090/api/comic`, {
+let categoryName = ref([''])
+let idList = ref([''])
+idList.value.shift()
+let categoryList = ref([])
+axios.get("http://localhost:8090/api/category/list").then(response => {
+  categoryList.value = response.data
+  categoryName.value.shift()
+})
+function addComic(id) {
+  axios.post(`http://localhost:8090/api/comic/` + idList.value , {
     name :name.value,
     author:author.value,
     description: description.value,
@@ -67,10 +101,27 @@ function addComic() {
   imgLink.value = null
   imgLink.value = null
   status.value = null
+
 }
 function goBack() {
   router.push({path:"/admin"})
 }
+function remove(item) {
+  const i = categoryName.value.indexOf(item)
+  const id = idList.value.indexOf(item)
+  if (i > -1 ) {
+    categoryName.value.splice(i, 1)
+    idList.value.splice(id, 1)
+
+  }
+  console.log(idList.value)
+}
+function pushToArray(id,name) {
+  idList.value.push(id)
+  categoryName.value.push(name)
+  console.log(idList.value)
+}
+
 </script>
 
 <style scoped>

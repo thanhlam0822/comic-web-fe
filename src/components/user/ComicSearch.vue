@@ -28,5 +28,7 @@ function search() {
 .search-bar {
   display: flex;
   justify-content: center;
+  background-color: white;
 }
+
 </style>

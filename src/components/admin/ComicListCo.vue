@@ -1,85 +1,71 @@
 <template>
-  <h1>Add Comic Form </h1>
-  <el-row justify="center" v-if="success">
-    <el-col :span="5" >
-      <el-alert title="Update success" type="success" effect="dark" show-icon />
-    </el-col>
-  </el-row>
-  <br>
-  <el-form
-      :label-position="labelPosition"
-      label-width="100px"
-      style="max-width: 460px"
-      @keyup.enter.prevent="addComic"
-  >
-    <el-form-item label="Name">
-      <el-input v-model="name" />
-    </el-form-item>
 
-    <el-form-item>
-      <el-dropdown>
-        <span class="el-dropdown-link">
-          Category List
-          <el-icon class="el-icon--right">
-            <arrow-down />
-          </el-icon>
-        </span>
-        <template #dropdown>
-          <el-dropdown-menu>
-            <div v-for="item in categoryList" :key="item">
-              <el-dropdown-item @click="pushToArray(item.categoryId)"> {{item.categoryName}}</el-dropdown-item>
-            </div>
+ <div class="comic-list">
+   <el-table :data="comicList" style="width: 100%">
+     <el-table-column label="" >
+       <template #default="scope">
+         <div class="comic-image">
+           <el-image style="width: 150px; height: 150px" :src=" scope.row.imageUrl" fit="contain" />
+         </div>
+       </template>
+     </el-table-column>
+     <el-table-column prop="comicId" label="ID" />
+     <el-table-column prop="name" label="Name"  />
+     <el-table-column prop="author" label="Author" />
+     <el-table-column label="Category" >
+       <template #default="scope">
+         <div style="display: flex; align-items: center">
 
-          </el-dropdown-menu>
-        </template>
-      </el-dropdown>
-    </el-form-item>
-    <el-form-item>
-      <div v-for="id in idList" :key="id"> {{id}}</div>
-    </el-form-item>
+           <span v-for="category in scope.row.categories " :key="category" >{{ category.name }}</span>
 
-    <el-form-item >
-      <el-button @click.prevent="addComic" type="primary " plain>Add User</el-button>
-      <el-button @click="goBack" type="primary " plain>Go back</el-button>
+         </div>
+       </template>
+     </el-table-column>
+     <el-table-column prop="status" label="Status" />
+     <el-table-column label="" >
+       <template #default="scope">
+         <div style="display: flex; justify-content: center">
 
-    </el-form-item>
+           <el-button type="primary" @click="toEditPage(scope.row.comicId)">Edit</el-button>
 
-  </el-form>
+           <dialog-custom @delete="deleteComic(scope.row.comicId)"></dialog-custom>
+         </div>
+       </template>
+     </el-table-column>
+   </el-table>
+ </div>
 </template>
 
 <script lang="ts" setup>
-import {useRouter} from 'vue-router'
-import {  ref } from 'vue'
 import axios from "axios";
-
-const labelPosition = ref('right')
-const router = useRouter()
-let success = ref(false)
-let name = ref(null);
-let idList = ref([''])
-let categoryName = ref([''])
-let categoryList = ref([])
-axios.get("http://localhost:8090/api/category/list").then(response => categoryList.value = response.data)
-function addComic(id) {
-  axios.post(`http://localhost:8090/api/comic/` + idList.value , {
-    name :name.value,
+import {ref,watch} from "vue";
+import {useRouter} from "vue-router";
+import DialogCustom from "@/components/admin/DialogCustom.vue"
+let comicList = ref([])
+let router = useRouter();
+let length = ref()
+axios.get("http://localhost:8090/api/comic").then(response => {
+  comicList.value = response.data
 
 
+})
+let toEditPage = (id:number) => {
+  router.push(`/edit-comic/${id}`)
+}
+let deleteComic = (id:number) => {
+  axios.delete(`http://localhost:8090/api/comic/${id}`).then(response => {
+    comicList.value = response.data
   })
-  success.value = true
-
-  name.value = null;
-
 }
-function pushToArray(item) {
-  idList.value.push(item)
 
-}
-function goBack() {
-  router.push({path:"/admin"})
-}
+
 </script>
 
 <style scoped>
-
+.comic-image {
+  height: 200px;
+}
+.comic-list {
+  margin-top: 10px;
+}
 </style>

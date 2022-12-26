@@ -1,5 +1,6 @@
 <template>
   <button @click.prevent="logout">Logout</button>
+  {{currentUser}}
   <div class="container">
     <header class="jumbotron">
       <h3>
@@ -22,11 +23,12 @@
 
 <script lang="ts" setup>
 import AuthService from '@/services/auth.service.js'
-const router = useRouter()
+
 import {useStore} from "vuex";
 import {useRouter} from "vue-router";
 import {computed, ref} from "vue";
 const store = useStore()
+const router = useRouter()
 let currentUser = computed(() => {
   return store.state.auth.user
 })

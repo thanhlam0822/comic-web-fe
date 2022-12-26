@@ -15,9 +15,12 @@ const CategoryList = () => import('@/components/admin/CategoryList.vue')
 const CategoryEdit = () => import('@/components/admin/CategoryEdit.vue')
 const ComicListCo  = () => import('@/components/admin/ComicListCo.vue')
 const ComicAdd  = () => import('@/components/admin/ComicAdd.vue')
-const AdminRole  = () => import('@/components/auththentication/AdminRole.vue')
-const UserRole = () => import('@/components/auththentication/UserRole.vue')
-
+const ComicEdit = () => import('@/components/admin/ComicEdit.vue')
+// const AdminRole  = () => import('@/components/auththentication/AdminRole.vue')
+// const UserRole = () => import('@/components/auththentication/UserRole.vue')
+const ComicDetail = () => import("@/components/user/ComicDetail.vue")
+const ComicChapterDetail = () => import("@/components/user/ComicChapterDetail.vue")
+const ComicRead = () => import("@/components/user/ComicRead.vue")
 const routes: Array<RouteRecordRaw> = [
     {
         path: '/',
@@ -63,6 +66,10 @@ const routes: Array<RouteRecordRaw> = [
         component:CategoryEdit
     },
     {
+        path: '/edit-comic/:id',
+        component:ComicEdit
+    },
+    {
         path: "/login",
         component: UserLogin
     },
@@ -71,13 +78,14 @@ const routes: Array<RouteRecordRaw> = [
         component: UserProfile
     },
     {
-        path: "/user-role",
-        component : UserRole
+        path:"/comic-detail/",
+        children: [
+            {path: ":id/", component: ComicDetail },
+            {path:"chapter/:chapterId",component:ComicChapterDetail}
+        ],
+        component: ComicRead
     },
-    {
-        path: "/admin-role",
-        component : AdminRole
-    },
+
 
 
 
